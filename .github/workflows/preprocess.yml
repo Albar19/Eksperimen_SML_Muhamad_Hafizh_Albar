@@ -1,0 +1,16 @@
+name: preprocess
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'namadataset_raw/**'
+      - 'preprocessing/**'
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Placeholder preprocessing workflow
+        run: echo "Add preprocessing steps here"
