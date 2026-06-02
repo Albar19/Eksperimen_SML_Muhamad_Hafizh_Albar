@@ -1,4 +1,4 @@
-name: preprocess
+name: Preprocessing Dataset
 
 on:
   workflow_dispatch:
@@ -10,7 +10,31 @@ on:
 jobs:
   preprocess:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Placeholder preprocessing workflow
-        run: echo "Add preprocessing steps here"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy scikit-learn
+
+      - name: Run Preprocessing Script
+        run: |
+          cd preprocessing
+          python automate_Muhamad_Hafizh_Albar.py
+
+      - name: Commit and Push Preprocessed Dataset
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add preprocessing/namadataset_preprocessing/clean_data.csv
+          git add namadataset_preprocessing/clean_data.csv
+          git diff --staged --quiet || git commit -m "Auto-update: preprocessed dataset terbaru"
+          git push
