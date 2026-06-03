@@ -140,12 +140,12 @@ def preprocess(raw_data_path: str = None, output_path: str = None) -> pd.DataFra
     
     if raw_data_path is None:
         raw_data_path = os.path.join(
-            base_dir, "..", "namadataset_raw", "Dataset-Telco-Customer-Churn.csv"
+            base_dir, "..", "Telco-Customer-Churn_raw", "Dataset-Telco-Customer-Churn.csv"
         )
     
     if output_path is None:
         output_path = os.path.join(
-            base_dir, "namadataset_preprocessing", "clean_data.csv"
+            base_dir, "Telco-Customer-Churn_preprocessing", "clean_data.csv"
         )
 
     print("=" * 60)
@@ -174,7 +174,7 @@ def preprocess(raw_data_path: str = None, output_path: str = None) -> pd.DataFra
     print(f"[SAVE] Distribusi target:\n{df['Churn'].value_counts().to_string()}")
 
     # Juga simpan ke root-level namadataset_preprocessing
-    root_output = os.path.join(base_dir, "..", "namadataset_preprocessing", "clean_data.csv")
+    root_output = os.path.join(base_dir, "..", "Telco-Customer-Churn_preprocessing", "clean_data.csv")
     os.makedirs(os.path.dirname(root_output), exist_ok=True)
     df.to_csv(root_output, index=False)
     print(f"[SAVE] Salinan juga disimpan ke: {root_output}")
